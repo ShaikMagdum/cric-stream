@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Stream Hub (HLS + DASH)</title>
+    <title>Live Player - CRICKLY (Spider-Man Edition)</title>
+    
+    <!-- Using Roboto to match the standard sizing and bold lettering of the original site -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     
-    <!-- Shaka Player Core & UI -->
+    <!-- Shaka Player for HLS & MPD (DASH) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css">
 </head>
 <body>
-    <div class="app-layout">
-        <!-- Main Stage -->
-        <main class="player-stage">
-            <header class="topbar">
-                <div class="stream-info">
-                    <h1 id="active-title">Select a Stream</h1>
-                    <span id="active-category" class="badge">Offline</span>
-                </div>
-            </header>
-
-            <!-- Shaka Player Container -->
-            <div id="video-container" class="video-wrapper" data-shaka-player-container>
-                <video id="player" data-shaka-player autoplay playsinline></video>
-                <div id="player-status" class="status-overlay" style="display:none;"></div>
+    <div class="player-wrapper">
+        <!-- Top Status Bar mimicking cricklylive.pages.dev -->
+        <header class="top-bar">
+            <div class="match-info">
+                <span class="live-indicator"><span class="pulse"></span>LIVE</span>
+                <h1 id="match-title">LOADING MATCH... PLEASE WAIT</h1>
             </div>
+            <div class="platform-badges">
+                <span class="badge blue">ANDROID</span>
+                <span class="badge red">DESKTOP</span>
+                <span class="badge green">SMART TV</span>
+            </div>
+        </header>
+
+        <!-- Video Player Stage -->
+        <main class="video-stage" data-shaka-player-container>
+            <video id="player" data-shaka-player autoplay playsinline></video>
+            
+            <!-- Ad Overlay mimicking the original template -->
+            <button id="skip-ad-btn" style="display:none;">Skip Ad ⏭</button>
+            <div id="player-error" class="error-screen" style="display:none;">CONNECTING...</div>
         </main>
-
-        <!-- Channel Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Channels & Matches</h2>
-                <input type="text" id="search-input" placeholder="Search event or language...">
-            </div>
-            <div id="channel-container" class="channel-list"></div>
-        </aside>
     </div>
 
     <script src="app.js"></script>
